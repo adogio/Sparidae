@@ -28,5 +28,8 @@
     "mocha": "^4.0.1",
     "ts-node": "^3.3.0"
   },
-  "homepage": "https://github.com/adogio/Sparidae#readme"
+  "homepage": "https://github.com/adogio/Sparidae#readme",
+  "dependencies": {
+    "blueimp-md5": "^2.10.0"
+  }
 }
