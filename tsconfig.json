@@ -3,6 +3,7 @@
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
+        "moduleResolution": "node",
         "allowJs": true,
         "sourceMap": true,
         "outDir": "./dist",
