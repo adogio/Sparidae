@@ -1,0 +1,31 @@
+{
+  "name": "sparidae",
+  "version": "0.0.0",
+  "description": ":fish: A default avatar icon generator by md5, with DogUI style",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adogio/Sparidae.git"
+  },
+  "keywords": [
+    "dogui",
+    "icon",
+    "avatar"
+  ],
+  "author": "WMXPY",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/adogio/Sparidae/issues"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.44",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "ts-node": "^3.3.0"
+  },
+  "homepage": "https://github.com/adogio/Sparidae#readme"
+}
