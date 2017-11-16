@@ -1,11 +1,13 @@
 import * as fs from 'fs';
 import generator from './generator';
 import svgPopper from './svgPopper';
+import nameParser from './nameParser';
 import location from './pointLocation';
 
 export default function (username: string) {
     const gen = new generator(username);
-    const svg = new svgPopper(username);
+    const nam = new nameParser(username);
+    const svg = new svgPopper(nam.getTwoDigitResult());
     const loc = new location();
 
     const point1 = loc.getPoint(gen.getMedium(0, 6));

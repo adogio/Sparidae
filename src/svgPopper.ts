@@ -5,10 +5,10 @@ class svgPopper {
     private resultBuffer: string;
     private width: number;
     private height: number;
-    private username: string;
+    private display: string;
 
-    public constructor(username: string) {
-        this.username = username;
+    public constructor(display: string) {
+        this.display = display;
         this.reset();
     }
 
@@ -28,7 +28,7 @@ class svgPopper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:5;right:5;font-weight:bold;user-select: none\">" + this.username + "</div></div>";
+        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:5;right:5;font-weight:bold;font-size:30;user-select: none\">" + this.display + "</div></div>";
         this.reset();
         return result;
     }
