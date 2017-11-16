@@ -5,7 +5,7 @@ import location from './pointLocation';
 
 export default function (username: string) {
     const gen = new generator(username);
-    const svg = new svgPopper();
+    const svg = new svgPopper(username);
     const loc = new location();
 
     const point1 = loc.getPoint(gen.getMedium(0, 6));
