@@ -1,7 +1,7 @@
 import * as md5 from "blueimp-md5";
 
 interface options {
-    accuracy: number;
+    accuracy?: number;
 }
 
 class generator {
@@ -10,13 +10,17 @@ class generator {
     private decMedium: number;
 
     public constructor(username: string, userOptions?: options) {
-        const options = userOptions || {};
+        const options: options = userOptions || {};
         this.raw = username;
         this.medium = md5(username);
         this.decMedium = parseInt(this.medium.substring(0, options.accuracy || 7), 16);
     }
 
-    public getMD5(): number {
+    public getMD5(): string {
+        return this.medium;
+    }
+
+    public getMedium(): number {
         return this.decMedium;
     }
 }

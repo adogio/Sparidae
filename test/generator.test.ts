@@ -12,4 +12,9 @@ describe('generator construct test', () => {
     it('getMD5 shall return md5 result of test', () => {
         expect(generatorR.getMD5()).to.be.equal("098f6bcd4621d373cade4e832627b4f6");
     });
+
+    it('getMedium shall return dec result of test', () => {
+        expect(generatorR.getMedium()).to.be.equal(10024636);
+    });
+
 });
