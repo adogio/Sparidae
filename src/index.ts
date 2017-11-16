@@ -34,17 +34,14 @@ export default function (username: string) {
     const innterPoint8 = loc.getMediumPoint(point8, point2, gen.getMedium(21, 24));
     const innterPoint9 = loc.getMediumPoint(point9, point3, gen.getMedium(24, 27));
 
-    fs.writeFileSync(
-        'test.html',
-        svg.
-            setSize(100, 100).
-            reset().
-            rect(point1, point2, point3, "rgba(104, 237, 104, 0.3)").
-            rect(point4, point5, point6, "rgba(237, 170, 104, 0.3)").
-            rect(point7, point8, point9, "rgba(104, 237, 237, 0.3)").
-            rect(innterPoint1, innterPoint2, innterPoint3, "rgba(104, 104, 237, 0.2)").
-            rect(innterPoint4, innterPoint5, innterPoint6, "rgba(170, 237, 104, 0.2)").
-            rect(innterPoint7, innterPoint8, innterPoint9, "rgba(237, 170, 104, 0.2)").
-            flush()
-    );
+    return svg.
+        setSize(100, 100).
+        reset().
+        rect(point1, point2, point3, "rgba(104, 237, 104, 0.3)").
+        rect(point4, point5, point6, "rgba(237, 170, 104, 0.3)").
+        rect(point7, point8, point9, "rgba(104, 237, 237, 0.3)").
+        rect(innterPoint1, innterPoint2, innterPoint3, "rgba(104, 104, 237, 0.2)").
+        rect(innterPoint4, innterPoint5, innterPoint6, "rgba(170, 237, 104, 0.2)").
+        rect(innterPoint7, innterPoint8, innterPoint9, "rgba(237, 170, 104, 0.2)").
+        flush();
 }

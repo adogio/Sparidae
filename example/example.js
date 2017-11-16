@@ -1,3 +1,9 @@
 let a = require('../dist/index').default;
+let fs = require('fs');
 
-a("DAOIJDOIAS");
+let b = a("DAOIJDOIAS");
+
+fs.writeFileSync(
+    'test.html',
+    b
+);
