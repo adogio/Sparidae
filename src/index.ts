@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import generator from './generator';
 import svgPopper from './svgPopper';
+import pointLocation from './pointLocation';
 
 export default function (username: string) {
     const gen = new generator(username);
