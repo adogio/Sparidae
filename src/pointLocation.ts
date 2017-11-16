@@ -32,14 +32,15 @@ class location {
                 resultPoint = { x: EDGELENGTH, y: lengthLeft };
                 break;
             case 2:
-                resultPoint = { x: EDGELENGTH - lengthLeft, y: EDGELENGTH }
+                resultPoint = { x: EDGELENGTH - lengthLeft, y: EDGELENGTH };
                 break;
             case 3:
                 resultPoint = { x: 0, y: EDGELENGTH - lengthLeft };
                 break;
             default:
+                throw new Error("Edge out of bound");
         }
-        this.queue.push(whichEdge);
+        this.pushQueue(whichEdge).touchQueue();
         return resultPoint;
     }
 
@@ -48,6 +49,16 @@ class location {
             if (this.queue[i] == edge) return true;
         }
         return false;
+    }
+
+    public pushQueue(medium: number): location {
+        this.queue.push(medium);
+        return this;
+    }
+
+    public touchQueue(): location {
+        if (this.queue.length >= 4) this.clear();
+        return this;
     }
 
     public clear(): location {
