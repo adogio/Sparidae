@@ -3,6 +3,8 @@ import point from './point';
 class svgPopper {
 
     private resultBuffer: string;
+    private width: number;
+    private height: number;
 
     public constructor() {
         this.reset();
@@ -17,19 +19,28 @@ class svgPopper {
         return this;
     }
 
+    public setSize(width: number, height: number): svgPopper {
+        this.width = width;
+        this.height = height;
+        return this;
+    }
+
     public flush(): string {
         const result = this.resultBuffer + "</svg>";
         this.reset();
         return result;
     }
 
-    private pointBuilder(point: point): string {
-        return point.x + "," + point.y;
+    public reset(): svgPopper {
+        this.resultBuffer = "<svg viewBox=\"0 0 480 480\" ";
+        this.resultBuffer += "width=\"" + (this.width || "auto") + "\" ";
+        this.resultBuffer += "height=\"" + (this.height || "auto") + "\" ";
+        this.resultBuffer += ">"
+        return this;
     }
 
-    private reset(): svgPopper {
-        this.resultBuffer = "<svg viewBox=\"0 0 480 480\">"
-        return this;
+    private pointBuilder(point: point): string {
+        return point.x + "," + point.y;
     }
 
 }
