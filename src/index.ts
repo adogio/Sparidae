@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import generator from './generator';
 import svgPopper from './svgPopper';
 import nameParser from './nameParser';
