@@ -6,23 +6,30 @@ const EDGELENGTHTOTAL: number = EDGELENGTH * 4;
 class location {
 
     private queue: Array<number>;
+    private outer: Array<point>;
+    private inner: Array<point>;
 
     public constructor() {
         this.queue = [];
+        this.outer = [];
+        this.inner = [];
     }
 
     public getPoint(key: number): point {
         if (key <= EDGELENGTHTOTAL) throw new Error("key size too small");
         let temp: number = key % EDGELENGTHTOTAL;
         let whichEdge: number = Math.floor(temp / EDGELENGTH);
-        let lengthLeft: number = temp % EDGELENGTH;
+        let lengthLeft: number = Math.floor(temp % EDGELENGTH);
         let resultPoint: point;
+        let loop: number = 0;
         while (this.checkQueue(whichEdge)) {
-            if (whichEdge >= 3) {
-                whichEdge = 0;
+            if (loop >= 5) break;
+            if (whichEdge >= 3 || whichEdge <= 0) {
+                whichEdge = 2;
             } else {
-                whichEdge++;
+                (key + whichEdge) % 2 >= 1 ? whichEdge++ : whichEdge--;
             }
+            loop++;
         }
         switch (whichEdge) {
             case 0:
@@ -41,7 +48,29 @@ class location {
                 throw new Error("Edge out of bound");
         }
         this.pushQueue(whichEdge).touchQueue();
+        this.outer.push(resultPoint);
         return resultPoint;
+    }
+
+    public getMediumPoint(point1: point, point2: point, key: number): point {
+        const AvaiableShift = Math.floor(EDGELENGTH * 0.1);
+        let x: number = Math.floor((point1.x + point2.x) / 2) + this.getKeyShift(key, AvaiableShift);
+        let y: number = Math.floor((point1.y + point2.y) / 2) + this.getKeyShift(key, AvaiableShift);
+        // let x: number = Math.floor((point1.x + point2.x) / 2);
+        // let y: number = Math.floor((point1.y + point2.y) / 2);
+        let resultPoint = { x: x, y: y };
+        this.inner.push(resultPoint);
+        return resultPoint;
+    }
+
+    public getKeyShift(key: number, limit: number): number {
+        let shift = (key % limit);
+        return Math.floor(shift - shift / 2);
+    }
+
+    public getRandom(limit: number): number {
+        let ran: number = Math.floor(Math.random() * 1000);
+        return Math.floor((ran % limit) - limit / 2);
     }
 
     public checkQueue(edge: number): boolean {
