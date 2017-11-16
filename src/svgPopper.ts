@@ -1,4 +1,4 @@
-import point from './point';
+import point from './point.interface';
 
 class svgPopper {
 

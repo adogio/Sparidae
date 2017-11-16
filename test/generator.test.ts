@@ -14,7 +14,7 @@ describe('generator construct test', () => {
     });
 
     it('getMedium shall return dec result of test', () => {
-        expect(generatorR.getMedium()).to.be.equal(10024636);
+        expect(generatorR.getMedium(0, 7)).to.be.equal(10024636);
     });
 
 });

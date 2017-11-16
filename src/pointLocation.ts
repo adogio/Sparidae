@@ -1,4 +1,4 @@
-import point from './point';
+import point from './point.interface';
 
 const EDGELENGTH: number = 480;
 const EDGELENGTHTOTAL: number = EDGELENGTH * 4;
