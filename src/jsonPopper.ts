@@ -52,3 +52,5 @@ class jsonPopper implements popper {
         return this;
     }
 }
+
+export default jsonPopper;
