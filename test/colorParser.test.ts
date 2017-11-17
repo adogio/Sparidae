@@ -11,7 +11,7 @@ describe('colorParser construct test', () => {
     });
 
     it('each loop with same color shall return same result every time', () => {
-        const test = new colorParser(chaetodon(WEATHERS.NUM(10)));
+        const test: colorParser = new colorParser(chaetodon(WEATHERS.NUM(10)));
         expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
         expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
         expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());

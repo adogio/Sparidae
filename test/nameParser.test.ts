@@ -3,7 +3,7 @@ import nameParser from '../src/nameParser'
 
 describe('nameparser test', () => {
 
-    let testContent;
+    let testContent: nameParser;
 
     it('should return first while use single digit parser', () => {
         testContent = new nameParser("Sjo")
