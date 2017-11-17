@@ -5,10 +5,11 @@ import location from './pointLocation';
 import colorParser from './colorParser';
 import chaetodon, { WEATHERS } from 'chaetodon';
 
-export default function (username: string) {
+export default function (username: string, userOption?: any) {
+    const options = userOption || {};
     const gen = new generator(username);
     const nam = new nameParser(username);
-    const svg = new svgPopper(nam.getTwoDigitResult());
+    const svg = new svgPopper(options.long ? nam.getThreeDigitResult() : nam.getTwoDigitResult());
     const loc = new location();
     const col = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 30))));
 
