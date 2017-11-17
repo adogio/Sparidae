@@ -15,26 +15,26 @@ class colorParser {
     }
 
     public rgb: returningList = {
-        loop: () => {
+        loop: (): string => {
             if (!Boolean(this.colorList[this.loopStatus])) this.loopStatus = 0;
             return this.parseHEXtoRGBA(this.loopStatus++);
         }
     }
 
     public rgba: returningList = {
-        loop: () => {
+        loop: (): string => {
             if (!Boolean(this.colorList[this.loopStatus])) this.loopStatus = 0;
             return this.parseHEXtoRGBA(this.loopStatus++);
         }
     }
 
     private parseHEXtoRGBA(location: number): string {
-        let color = this.colorList[location];
+        let color: string = this.colorList[location];
         if (color.substring(0, 1) === "#") color = color.substring(1, color.length);
         if (color.length !== 6) throw new Error("color length > 6");
-        let result = "rgba(";
+        let result: string = "rgba(";
 
-        for (let i = 0; i < color.length; i += 2) {
+        for (let i: number = 0; i < color.length; i += 2) {
             result += parseInt(color.substring(i, i + 2), 16).toString();
             result += ", ";
         }
