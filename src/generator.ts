@@ -5,6 +5,7 @@ interface options {
 }
 
 class generator {
+
     private raw: string;
     private medium: string;
 

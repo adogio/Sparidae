@@ -1,0 +1,9 @@
+src
+test
+example
+node_modules
+.gitignore
+makefile
+package-lock.json
+test.html
+tsconfig.json
