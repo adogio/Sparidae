@@ -13,11 +13,11 @@ class svgPopper {
     }
 
     public rect(point1: point, point2: point, point3: point, fill: string): svgPopper {
-        this.resultBuffer += "<polygon points=\""
+        this.resultBuffer += "<polygon points=\"";
         this.resultBuffer += this.pointBuilder(point1) + " ";
         this.resultBuffer += this.pointBuilder(point2) + " ";
         this.resultBuffer += this.pointBuilder(point3);
-        this.resultBuffer += "\" fill=\"" + fill + "\" />"
+        this.resultBuffer += "\" fill=\"" + fill + "\" />";
         return this;
     }
 
@@ -37,7 +37,7 @@ class svgPopper {
         this.resultBuffer = "<div style=\"width:" + this.width + ";height:" + this.height + ";position:relative;border:1px black solid\"><svg viewBox=\"0 0 480 480\" ";
         this.resultBuffer += "width=\"" + (this.width || "auto") + "\" ";
         this.resultBuffer += "height=\"" + (this.height || "auto") + "\" ";
-        this.resultBuffer += ">"
+        this.resultBuffer += ">";
         return this;
     }
 

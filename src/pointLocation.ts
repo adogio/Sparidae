@@ -53,11 +53,9 @@ class location {
     }
 
     public getMediumPoint(point1: point, point2: point, key: number): point {
-        const AvaiableShift = Math.floor(EDGELENGTH * 0.1);
+        const AvaiableShift = Math.floor(EDGELENGTH * 0.3);
         let x: number = Math.floor((point1.x + point2.x) / 2) + this.getKeyShift(key, AvaiableShift);
         let y: number = Math.floor((point1.y + point2.y) / 2) + this.getKeyShift(key, AvaiableShift);
-        // let x: number = Math.floor((point1.x + point2.x) / 2);
-        // let y: number = Math.floor((point1.y + point2.y) / 2);
         let resultPoint = { x: x, y: y };
         this.inner.push(resultPoint);
         return resultPoint;
