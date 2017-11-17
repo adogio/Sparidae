@@ -2,6 +2,7 @@ import generator from './generator';
 import svgPopper from './svgPopper';
 import nameParser from './nameParser';
 import location from './pointLocation';
+import colorParser from './colorParser';
 import chaetodon, { WEATHERS } from 'chaetodon';
 
 export default function (username: string) {
@@ -9,6 +10,7 @@ export default function (username: string) {
     const nam = new nameParser(username);
     const svg = new svgPopper(nam.getTwoDigitResult());
     const loc = new location();
+    const col = new colorParser(chaetodon(WEATHERS.RANDOM));
 
     const point1 = loc.getPoint(gen.getMedium(0, 6));
     const point2 = loc.getPoint(gen.getMedium(6, 12));
@@ -37,11 +39,11 @@ export default function (username: string) {
     return svg.
         setSize(100, 100).
         reset().
-        rect(point1, point2, point3, "rgba(104, 237, 104, 0.3)").
-        rect(point4, point5, point6, "rgba(237, 170, 104, 0.3)").
-        rect(point7, point8, point9, "rgba(104, 237, 237, 0.3)").
-        rect(innterPoint1, innterPoint2, innterPoint3, "rgba(104, 104, 237, 0.2)").
-        rect(innterPoint4, innterPoint5, innterPoint6, "rgba(170, 237, 104, 0.2)").
-        rect(innterPoint7, innterPoint8, innterPoint9, "rgba(237, 170, 104, 0.2)").
+        rect(point1, point2, point3, col.rgba.loop()).
+        rect(point4, point5, point6, col.rgba.loop()).
+        rect(point7, point8, point9, col.rgba.loop()).
+        rect(innterPoint1, innterPoint2, innterPoint3, col.rgba.loop()).
+        rect(innterPoint4, innterPoint5, innterPoint6, col.rgba.loop()).
+        rect(innterPoint7, innterPoint8, innterPoint9, col.rgba.loop()).
         flush();
 }
