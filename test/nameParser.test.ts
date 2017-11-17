@@ -45,17 +45,17 @@ describe('nameparser test', () => {
         testContent = new nameParser("Joshua Liu T")
         expect(testContent.getThreeDigitResult()).to.be.equal("Jl T");
         testContent = new nameParser("sdd")
-        expect(testContent.getThreeDigitResult()).to.be.equal("Sd D");
+        expect(testContent.getThreeDigitResult()).to.be.equal("Sdd");
         testContent = new nameParser("T bag cc")
         expect(testContent.getThreeDigitResult()).to.be.equal("Tb C");
         testContent = new nameParser("S DJS SD s")
         expect(testContent.getThreeDigitResult()).to.be.equal("Sd S");
         testContent = new nameParser("a")
-        expect(testContent.getThreeDigitResult()).to.be.equal("Aa *");
+        expect(testContent.getThreeDigitResult()).to.be.equal("Aa*");
         testContent = new nameParser("as")
-        expect(testContent.getThreeDigitResult()).to.be.equal("As *");
+        expect(testContent.getThreeDigitResult()).to.be.equal("As*");
         testContent = new nameParser("")
-        expect(testContent.getThreeDigitResult()).to.be.equal("** *");
+        expect(testContent.getThreeDigitResult()).to.be.equal("***");
     });
 
 });
