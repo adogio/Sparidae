@@ -10,7 +10,7 @@ export default function (username: string) {
     const nam = new nameParser(username);
     const svg = new svgPopper(nam.getTwoDigitResult());
     const loc = new location();
-    const col = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 28))));
+    const col = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 29))));
 
     const point1 = loc.getPoint(gen.getMedium(0, 6));
     const point2 = loc.getPoint(gen.getMedium(6, 12));

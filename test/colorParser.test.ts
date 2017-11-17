@@ -1,16 +1,23 @@
 import { expect } from 'chai';
 import colorParser from '../src/colorParser';
+import chaetodon, { WEATHERS } from 'chaetodon';
 
 describe('colorParser construct test', () => {
 
-    it('a name shall return same result every time', () => {
-        let result = index("test");
-        expect(index("test")).to.be.equal(result);
-    });
+    let textContent: colorParser;
 
-    it('different name shall return different result every time', () => {
-        let result = index("test");
-        expect(index("tests")).to.be.not.equal(result);
+    beforeEach(() => {
+        textContent = new colorParser(chaetodon(WEATHERS.NUM(10)));
+    })
+
+    it('each loop with same color shall return same result every time', () => {
+        const test = new colorParser(chaetodon(WEATHERS.NUM(10)));
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
+        expect(test.rgba.loop()).to.be.equal(textContent.rgba.loop());
     });
 
 });
