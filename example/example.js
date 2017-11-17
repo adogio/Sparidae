@@ -3,7 +3,4 @@ let fs = require('fs');
 
 let b = a("DAOIJDOIAS");
 
-fs.writeFileSync(
-    'test.html',
-    b
-);
+fs.writeFileSync('test.html', b);
