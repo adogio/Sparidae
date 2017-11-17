@@ -2,6 +2,7 @@ import generator from './generator';
 import svgPopper from './svgPopper';
 import nameParser from './nameParser';
 import location from './pointLocation';
+import chaetodon, { WEATHERS } from 'chaetodon';
 
 export default function (username: string) {
     const gen = new generator(username);
