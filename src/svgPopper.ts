@@ -28,6 +28,10 @@ class svgPopper implements popper {
         return this;
     }
 
+    public flushString(): string {
+        return this.flush();
+    }
+
     public flush(): string {
         const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:5;right:5;font-weight:bold;font-size:30;user-select: none\">" + this.display + "</div></div>";
         this.reset();

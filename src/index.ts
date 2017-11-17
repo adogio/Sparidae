@@ -1,20 +1,33 @@
 import generator from './generator';
 import svgPopper from './svgPopper';
+import jsonPopper from './jsonPopper';
+import canvasPopper from './canvasPopper';
 import nameParser from './nameParser';
 import location from './pointLocation';
 import colorParser from './colorParser';
 import point from './point.interface';
+import popper from './popper.interface';
 import chaetodon, { WEATHERS } from 'chaetodon';
 
 interface UserOption {
     long?: boolean;
+    popper?: string;
+    raw?: boolean;
 }
 
 export default function (username: string, userOption?: UserOption) {
     const options: UserOption = userOption || {};
     const gen: generator = new generator(username);
     const nam: nameParser = new nameParser(username);
-    const svg: svgPopper = new svgPopper(options.long ? nam.getThreeDigitResult() : nam.getTwoDigitResult());
+    let popper: popper;
+    const display: string = options.long ? nam.getThreeDigitResult() : nam.getTwoDigitResult();
+    if (options.popper === 'json') {
+        popper = new jsonPopper(display);
+    } else if (options.popper === 'canvas') {
+        popper = new canvasPopper(display);
+    } else {
+        popper = new svgPopper(display);
+    }
     const loc: location = new location();
     const col: colorParser = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 30))));
 
@@ -42,7 +55,7 @@ export default function (username: string, userOption?: UserOption) {
     const innterPoint8: point = loc.getMediumPoint(point8, point2, gen.getMedium(21, 24));
     const innterPoint9: point = loc.getMediumPoint(point9, point3, gen.getMedium(24, 27));
 
-    return svg.
+    popper.
         setSize(100, 100).
         reset().
         rect(point1, point2, point3, col.rgba.loop()).
@@ -50,6 +63,8 @@ export default function (username: string, userOption?: UserOption) {
         rect(point7, point8, point9, col.rgba.loop()).
         rect(innterPoint1, innterPoint2, innterPoint3, col.rgba.loop()).
         rect(innterPoint4, innterPoint5, innterPoint6, col.rgba.loop()).
-        rect(innterPoint7, innterPoint8, innterPoint9, col.rgba.loop()).
-        flush();
+        rect(innterPoint7, innterPoint8, innterPoint9, col.rgba.loop());
+
+    return options.raw ? popper.flush() : popper.flushString();
+
 }

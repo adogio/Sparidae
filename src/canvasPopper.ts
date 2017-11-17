@@ -17,6 +17,10 @@ class canvasPopper implements popper {
         return this;
     }
 
+    public flushString(): string {
+        return this.flush();
+    }
+
     public flush(): string {
         return "";
     }
@@ -25,3 +29,5 @@ class canvasPopper implements popper {
         return this;
     }
 }
+
+export default canvasPopper;

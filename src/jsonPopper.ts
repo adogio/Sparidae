@@ -35,7 +35,11 @@ class jsonPopper implements popper {
         return this;
     }
 
-    public flush(): any {
+    public flushString(): string {
+        return JSON.stringify(this.flush());
+    }
+
+    public flush(): jsonResult {
         let temp = this.resultBuffer;
         this.reset();
         return temp;
