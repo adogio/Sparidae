@@ -1,6 +1,7 @@
 import point from './point.interface';
+import popper from './popper.interface';
 
-class svgPopper {
+class svgPopper implements popper {
 
     private resultBuffer: string;
     private width: number;
