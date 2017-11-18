@@ -11,16 +11,16 @@ import chaetodon, { WEATHERS } from 'chaetodon';
 
 interface UserOption {
     long?: boolean;
+    force?: boolean;
     popper?: string;
     raw?: boolean;
 }
 
-export default function (username: string, userOption?: UserOption) {
+function generateIcon(username: string, userOption?: UserOption) {
     const options: UserOption = userOption || {};
     const gen: generator = new generator(username);
-    const nam: nameParser = new nameParser(username);
+    const display: string = getNameParseResult(username, options);
     let popper: popper;
-    const display: string = options.long ? nam.getThreeDigitResult() : nam.getTwoDigitResult();
     if (options.popper === 'json') {
         popper = new jsonPopper(display);
     } else if (options.popper === 'canvas') {
@@ -68,3 +68,17 @@ export default function (username: string, userOption?: UserOption) {
     return options.raw ? popper.flush() : popper.flushString();
 
 }
+
+function checkOption(options: UserOption) {
+    if (options.long && options.force) throw new Error("can only set one of name parseing option");
+}
+
+function getNameParseResult(username: string, options: UserOption) {
+    checkOption(options);
+    const nam: nameParser = new nameParser(username);
+    if (options.force) return username;
+    if (options.long) return nam.getThreeDigitResult();
+    return nam.getTwoDigitResult();
+}
+
+export default generateIcon;
