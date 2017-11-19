@@ -39,9 +39,9 @@ class svgPopper implements popper {
     }
 
     public reset(): svgPopper {
-        this.resultBuffer = "<div style=\"width:" + this.width + ";height:" + this.height + ";position:relative;border:1px black solid\"><svg viewBox=\"0 0 480 480\" ";
-        this.resultBuffer += "width=\"" + (this.width || "auto") + "\" ";
-        this.resultBuffer += "height=\"" + (this.height || "auto") + "\" ";
+        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";position:relative;border:1px black solid\"><svg viewBox=\"0 0 480 480\" ";
+        this.resultBuffer += "width=\"" + (this.width + "px" || "auto") + "\" ";
+        this.resultBuffer += "height=\"" + (this.height + "px" || "auto") + "\" ";
         this.resultBuffer += ">";
         return this;
     }
