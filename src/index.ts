@@ -12,10 +12,13 @@ import chaetodon, { WEATHERS } from 'chaetodon';
 interface UserOption {
     long?: boolean;
     force?: boolean;
+    empty?: boolean;
     popper?: string;
     raw?: boolean;
+    border?: boolean;
     width?: number;
     height?: number;
+    size?: number;
 }
 
 function generateIcon(username: string, userOption?: UserOption) {
@@ -28,7 +31,7 @@ function generateIcon(username: string, userOption?: UserOption) {
     } else if (options.popper === 'canvas') {
         popper = new canvasPopper(display);
     } else {
-        popper = new svgPopper(display);
+        popper = new svgPopper(display, options.border || false, options.size);
     }
     const loc: location = new location();
     const col: colorParser = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 30))));
@@ -72,13 +75,14 @@ function generateIcon(username: string, userOption?: UserOption) {
 }
 
 function checkOption(options: UserOption) {
-    if (options.long && options.force) throw new Error("can only set one of name parseing option");
+    if (options.long && options.force && options.empty) throw new Error("can only set one of name parseing option");
 }
 
 function getNameParseResult(username: string, options: UserOption) {
     checkOption(options);
     const nam: nameParser = new nameParser(username);
     if (options.force) return username;
+    if (options.empty) return "";
     if (options.long) return nam.getThreeDigitResult();
     return nam.getTwoDigitResult();
 }

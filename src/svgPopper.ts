@@ -7,8 +7,12 @@ class svgPopper implements popper {
     private width: number;
     private height: number;
     private display: string;
+    private border: string;
+    private size: number;
 
-    public constructor(display: string) {
+    public constructor(display: string, border: boolean, size: number) {
+        this.border = border ? ";border:1px solid black" : "";
+        this.size = size;
         this.display = display;
         this.reset();
     }
@@ -33,13 +37,13 @@ class svgPopper implements popper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.width * 0.32) + "px" + ";user-select: none\">" + this.display + "</div></div>";
+        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.size || (this.width * 0.32)) + "px" + ";user-select: none\">" + this.display + "</div></div>";
         this.reset();
         return result;
     }
 
     public reset(): svgPopper {
-        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";position:relative;border:1px black solid\"><svg viewBox=\"0 0 480 480\" ";
+        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";position:relative" + this.border + "\"><svg viewBox=\"0 0 480 480\" ";
         this.resultBuffer += "width=\"" + (this.width + "px" || "auto") + "\" ";
         this.resultBuffer += "height=\"" + (this.height + "px" || "auto") + "\" ";
         this.resultBuffer += ">";
