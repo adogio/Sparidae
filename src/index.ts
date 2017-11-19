@@ -14,6 +14,8 @@ interface UserOption {
     force?: boolean;
     popper?: string;
     raw?: boolean;
+    width?: number;
+    height?: number;
 }
 
 function generateIcon(username: string, userOption?: UserOption) {
@@ -56,7 +58,7 @@ function generateIcon(username: string, userOption?: UserOption) {
     const innterPoint9: point = loc.getMediumPoint(point9, point3, gen.getMedium(24, 27));
 
     popper.
-        setSize(100, 100).
+        setSize(options.width || 100, options.height || 100).
         reset().
         rect(point1, point2, point3, col.rgba.loop()).
         rect(point4, point5, point6, col.rgba.loop()).
