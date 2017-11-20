@@ -43,7 +43,7 @@ class svgPopper implements popper {
     }
 
     public reset(): svgPopper {
-        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";position:relative" + this.border + "\"><svg viewBox=\"0 0 480 480\" ";
+        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";overflow:hidden;position:relative" + this.border + "\"><svg viewBox=\"0 0 480 480\" ";
         this.resultBuffer += "width=\"" + (this.width + "px" || "auto") + "\" ";
         this.resultBuffer += "height=\"" + (this.height + "px" || "auto") + "\" ";
         this.resultBuffer += ">";
