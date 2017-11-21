@@ -9,6 +9,7 @@ interface jsonResult {
     aspect: boolean;
     components: Array<{
         type: string;
+        fill: string;
         points: Array<point>;
     }>;
 }
@@ -25,6 +26,7 @@ class jsonPopper implements popper {
     public rect(point1: point, point2: point, point3: point, fill: string): jsonPopper {
         this.resultBuffer.components.push({
             type: "polygon",
+            fill: fill,
             points: [point1, point2, point3]
         });
         return this;

@@ -11,10 +11,12 @@ class svgPopper implements popper {
     private size: number;
     private isAspect: boolean;
 
-    public constructor(display: string, border: boolean, size: number) {
+    public constructor(display: string, border?: boolean, size?: number) {
         this.border = border ? "1px solid black" : "";
         this.isAspect = false;
-        this.size = size;
+        this.width = 100;
+        this.height = 100;
+        this.size = size || 100;
         this.display = display;
         this.reset();
     }
