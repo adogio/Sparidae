@@ -67,7 +67,18 @@ class svgPopper implements popper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + this.heightUnit + ";right:" + (this.height * 0.05) + this.widthUnit + ";font-weight:bold;font-size:" + (this.fontSize || this.width * 0.32) + this.widthUnit + ";user-select: none\">" + this.display + "</div></div>";
+        let result;
+        result = this.resultBuffer;
+        result += "</svg>";
+        result += "<div style=\"";
+        result += "position:absolute;";
+        result += "bottom:" + (this.width * 0.05) + this.heightUnit + ";";
+        result += "right:" + (this.height * 0.05) + this.widthUnit + ";";
+        result += "font-weight:bold;";
+        result += "font-size:" + (this.fontSize || this.width * 0.32) + this.widthUnit + ";";
+        result += "user-select: none\">";
+        result += this.display;
+        result += "</div></div>";
         this.reset();
         return result;
     }
