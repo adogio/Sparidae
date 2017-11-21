@@ -12,7 +12,7 @@ class svgPopper implements popper {
     private isAspect: boolean;
 
     public constructor(display: string, border: boolean, size: number) {
-        this.border = border ? ";border:1px solid black" : "";
+        this.border = border ? "1px solid black" : "";
         this.isAspect = false;
         this.size = size;
         this.display = display;
@@ -50,9 +50,17 @@ class svgPopper implements popper {
     }
 
     public reset(): svgPopper {
-        this.resultBuffer = "<div style=\"width:" + this.width + "px" + ";height:" + this.height + "px" + ";overflow:hidden;position:relative" + this.border + "\"><svg viewBox=\"0 0 480 480\" ";
+        this.resultBuffer = "<div style=\"";
+        this.resultBuffer += "width:" + this.width + "px;";
+        this.resultBuffer += "height:" + this.height + "px;";
+        this.resultBuffer += "overflow:hidden;";
+        this.resultBuffer += "position:relative;";
+        this.resultBuffer += "border:" + (this.border || "0px") + ";";
+        this.resultBuffer += "\">";
+        this.resultBuffer += "<svg viewBox=\"0 0 480 480\" ";
         this.resultBuffer += "width=\"" + (this.width + "px" || "auto") + "\" ";
         this.resultBuffer += "height=\"" + (this.height + "px" || "auto") + "\" ";
+        this.resultBuffer += "preserveAspectRatio=\"" + (this.isAspect ? "true" : "none") + "\" ";
         this.resultBuffer += ">";
         return this;
     }
