@@ -16,7 +16,7 @@ class svgPopper implements popper {
         this.isAspect = false;
         this.width = 100;
         this.height = 100;
-        this.fontSize = fontSize || 100;
+        this.fontSize = fontSize || void 0;
         this.display = display;
         this.reset();
     }
@@ -46,7 +46,7 @@ class svgPopper implements popper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.fontSize || (this.width * 0.32)) + "px" + ";user-select: none\">" + this.display + "</div></div>";
+        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.fontSize || this.width * 0.32) + "px" + ";user-select: none\">" + this.display + "</div></div>";
         this.reset();
         return result;
     }
