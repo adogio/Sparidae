@@ -20,6 +20,7 @@ interface UserOption {
     height?: number;
     fontSize?: number;
     aspect?: boolean;
+    unit?: string;
 }
 
 function generateIcon(username: string, userOption?: UserOption) {
@@ -32,7 +33,11 @@ function generateIcon(username: string, userOption?: UserOption) {
     } else if (options.popper === 'canvas') {
         popper = new canvasPopper(display);
     } else {
-        popper = new svgPopper(display, options.border || false, options.fontSize);
+        popper = new svgPopper(display, {
+            border: options.border || false,
+            fontSize: options.fontSize,
+            unit: options.unit || "px"
+        });
     }
     const loc: location = new location();
     const col: colorParser = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 30))));
