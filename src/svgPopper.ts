@@ -16,14 +16,21 @@ class svgPopper implements popper {
     private border: string;
     private fontSize: number;
     private isAspect: boolean;
-    private unit: string;
+    private widthUnit: string;
+    private heightUnit: string;
 
     public constructor(display: string, userOptions?: UserOptions) {
         const options: UserOptions = userOptions || {};
-        this.unit = options.unit || "px";
+        if (options.unit === "flex") {
+            this.widthUnit = "vw";
+            this.heightUnit = "vh";
+        } else {
+            this.widthUnit = options.unit || "px";
+            this.heightUnit = options.unit || "px";
+        }
         this.border = options.border ? "1px solid black" : "";
         this.isAspect = false;
-        if (this.unit === "px") {
+        if (this.widthUnit === "px") {
             this.width = 100;
             this.height = 100;
         } else {
@@ -60,22 +67,22 @@ class svgPopper implements popper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + this.unit + ";right:" + (this.height * 0.05) + this.unit + ";font-weight:bold;font-size:" + (this.fontSize || this.width * 0.32) + this.unit + ";user-select: none\">" + this.display + "</div></div>";
+        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + this.heightUnit + ";right:" + (this.height * 0.05) + this.widthUnit + ";font-weight:bold;font-size:" + (this.fontSize || this.width * 0.32) + this.widthUnit + ";user-select: none\">" + this.display + "</div></div>";
         this.reset();
         return result;
     }
 
     public reset(): svgPopper {
         this.resultBuffer = "<div style=\"";
-        this.resultBuffer += "width:" + this.width + this.unit + ";";
-        this.resultBuffer += "height:" + this.height + this.unit + ";";
+        this.resultBuffer += "width:" + this.width + this.widthUnit + ";";
+        this.resultBuffer += "height:" + this.height + this.heightUnit + ";";
         this.resultBuffer += "overflow:hidden;";
         this.resultBuffer += "position:relative;";
-        this.resultBuffer += "border:" + (this.border || "0") + ";";
+        this.resultBuffer += "border:" + (this.border || "0" + this.widthUnit) + ";";
         this.resultBuffer += "\">";
         this.resultBuffer += "<svg viewBox=\"0 0 480 480\" ";
-        this.resultBuffer += "width=\"" + (this.width + this.unit || "auto") + "\" ";
-        this.resultBuffer += "height=\"" + (this.height + this.unit || "auto") + "\" ";
+        this.resultBuffer += "width=\"" + (this.width + this.widthUnit || "auto") + "\" ";
+        this.resultBuffer += "height=\"" + (this.height + this.heightUnit || "auto") + "\" ";
         this.resultBuffer += "preserveAspectRatio=\"" + (this.isAspect ? "true" : "none") + "\" ";
         this.resultBuffer += ">";
         return this;
