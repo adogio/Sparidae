@@ -17,6 +17,10 @@ class canvasPopper implements popper {
         return this;
     }
 
+    public setAspect(aspect: boolean): canvasPopper {
+        return this;
+    }
+
     public flushString(): string {
         return this.flush();
     }

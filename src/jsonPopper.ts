@@ -6,6 +6,7 @@ interface jsonResult {
     height: number;
     type: string;
     display: string;
+    aspect: boolean;
     components: Array<{
         type: string;
         points: Array<point>;
@@ -35,6 +36,11 @@ class jsonPopper implements popper {
         return this;
     }
 
+    public setAspect(aspect: boolean): jsonPopper {
+        this.resultBuffer.aspect = aspect;
+        return this;
+    }
+
     public flushString(): string {
         return JSON.stringify(this.flush());
     }
@@ -51,6 +57,7 @@ class jsonPopper implements popper {
             height: 100,
             type: 'svg',
             display: '',
+            aspect: false,
             components: []
         };
         return this;
