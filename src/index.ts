@@ -18,7 +18,7 @@ interface UserOption {
     border?: boolean;
     width?: number;
     height?: number;
-    size?: number;
+    fontSize?: number;
     aspect?: boolean;
 }
 
@@ -32,7 +32,7 @@ function generateIcon(username: string, userOption?: UserOption) {
     } else if (options.popper === 'canvas') {
         popper = new canvasPopper(display);
     } else {
-        popper = new svgPopper(display, options.border || false, options.size);
+        popper = new svgPopper(display, options.border || false, options.fontSize);
     }
     const loc: location = new location();
     const col: colorParser = new colorParser(chaetodon(WEATHERS.NUM(gen.getMedium(27, 30))));

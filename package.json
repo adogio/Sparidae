@@ -1,6 +1,6 @@
 {
   "name": "sparidae",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": ":fish: A default avatar icon generator by md5, with DogUI style",
   "main": "dist/index.js",
   "scripts": {

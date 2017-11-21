@@ -8,15 +8,15 @@ class svgPopper implements popper {
     private height: number;
     private display: string;
     private border: string;
-    private size: number;
+    private fontSize: number;
     private isAspect: boolean;
 
-    public constructor(display: string, border?: boolean, size?: number) {
+    public constructor(display: string, border?: boolean, fontSize?: number) {
         this.border = border ? "1px solid black" : "";
         this.isAspect = false;
         this.width = 100;
         this.height = 100;
-        this.size = size || 100;
+        this.fontSize = fontSize || 100;
         this.display = display;
         this.reset();
     }
@@ -46,7 +46,7 @@ class svgPopper implements popper {
     }
 
     public flush(): string {
-        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.size || (this.width * 0.32)) + "px" + ";user-select: none\">" + this.display + "</div></div>";
+        const result = this.resultBuffer + "</svg><div style=\"position:absolute;bottom:" + (this.width * 0.05) + "px" + ";right:" + (this.height * 0.05) + "px" + ";font-weight:bold;font-size:" + (this.fontSize || (this.width * 0.32)) + "px" + ";user-select: none\">" + this.display + "</div></div>";
         this.reset();
         return result;
     }
