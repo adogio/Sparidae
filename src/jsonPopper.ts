@@ -3,8 +3,12 @@ import popper from './popper.interface';
 
 interface jsonResult {
     width: number;
+    widthUnit: string;
     height: number;
+    heightUnit: string;
     type: string;
+    border: boolean;
+    fontSize: number;
     display: string;
     aspect: boolean;
     components: Array<{
@@ -14,12 +18,28 @@ interface jsonResult {
     }>;
 }
 
+interface UserOptions {
+    border?: boolean;
+    fontSize?: number;
+    unit?: string;
+}
+
 class jsonPopper implements popper {
 
     private resultBuffer: jsonResult;
 
-    public constructor(display: string) {
+    public constructor(display: string, userOptions?: UserOptions) {
+        const options: UserOptions = userOptions || {};
         this.reset();
+        if (options.unit === "flex") {
+            this.resultBuffer.widthUnit = "vw";
+            this.resultBuffer.heightUnit = "vh";
+        } else {
+            this.resultBuffer.widthUnit = options.unit || "px";
+            this.resultBuffer.heightUnit = options.unit || "px";
+        }
+        this.resultBuffer.fontSize = options.fontSize || void 0;
+        this.resultBuffer.border = options.border || true;
         this.resultBuffer.display = display;
     }
 
@@ -50,15 +70,19 @@ class jsonPopper implements popper {
     public flush(): jsonResult {
         let temp = this.resultBuffer;
         this.reset();
-        return temp;
+        return { ...temp, ...{ fontSize: this.resultBuffer.fontSize || this.resultBuffer.width * 0.32 } };
     }
 
     public reset(): jsonPopper {
         this.resultBuffer = {
             width: 100,
+            widthUnit: "px",
+            border: true,
             height: 100,
+            heightUnit: "px",
             type: 'svg',
             display: '',
+            fontSize: void 0,
             aspect: false,
             components: []
         };
