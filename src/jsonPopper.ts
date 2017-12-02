@@ -68,9 +68,9 @@ class jsonPopper implements popper {
     }
 
     public flush(): jsonResult {
-        let temp = this.resultBuffer;
+        let temp = this.deepClone({ ...this.resultBuffer, ...{ fontSize: this.resultBuffer.fontSize || this.resultBuffer.width * 0.32 } });
         this.reset();
-        return { ...temp, ...{ fontSize: this.resultBuffer.fontSize || this.resultBuffer.width * 0.32 } };
+        return temp;
     }
 
     public reset(): jsonPopper {
@@ -87,6 +87,10 @@ class jsonPopper implements popper {
             components: []
         };
         return this;
+    }
+
+    private deepClone(buffer: jsonResult): jsonResult {
+        return JSON.parse(JSON.stringify(buffer));
     }
 }
 
