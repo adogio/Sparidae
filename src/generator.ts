@@ -1,6 +1,6 @@
 import * as md5 from "blueimp-md5";
 
-interface options {
+export interface options {
     accuracy?: number;
 }
 

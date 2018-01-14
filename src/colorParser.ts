@@ -1,4 +1,4 @@
-interface returningList {
+export interface returningList {
     loop: Function;
 }
 

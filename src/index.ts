@@ -9,7 +9,7 @@ import point from './point.interface';
 import popper from './popper.interface';
 import chaetodon, { WEATHERS } from 'chaetodon';
 
-interface UserOption {
+export interface UserOption {
     long?: boolean;
     force?: boolean;
     empty?: boolean;

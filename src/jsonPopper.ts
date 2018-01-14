@@ -1,7 +1,7 @@
 import point from './point.interface';
 import popper from './popper.interface';
 
-interface jsonResult {
+export interface jsonResult {
     width: number;
     widthUnit: string;
     height: number;
@@ -18,7 +18,7 @@ interface jsonResult {
     }>;
 }
 
-interface UserOptions {
+export interface UserOptions {
     border?: boolean;
     fontSize?: number;
     unit?: string;

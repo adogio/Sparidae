@@ -1,7 +1,7 @@
 import point from './point.interface';
 import popper from './popper.interface';
 
-interface UserOptions {
+export interface UserOptions {
     border?: boolean;
     fontSize?: number;
     unit?: string;
