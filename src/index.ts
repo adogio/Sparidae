@@ -29,7 +29,11 @@ function generateIcon(username: string, userOption?: UserOption) {
     const display: string = getNameParseResult(username, options);
     let popper: popper;
     if (options.popper === 'json') {
-        popper = new jsonPopper(display);
+        popper = new jsonPopper(display, {
+            border: options.border || false,
+            fontSize: options.fontSize,
+            unit: options.unit || "px",
+        });
     } else if (options.popper === 'canvas') {
         popper = new canvasPopper(display);
     } else {
