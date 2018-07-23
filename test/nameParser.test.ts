@@ -30,7 +30,7 @@ describe('nameparser test', () => {
         expect(testContent.getTwoDigitResult()).to.be.equal("**");
     });
 
-    it('should return first of fisrt and last name while use double digit parser to parse mutiple word', () => {
+    it('should return first of first and last name while use double digit parser to parse mutiple word', () => {
         testContent = new nameParser("Joshua Liu T")
         expect(testContent.getTwoDigitResult()).to.be.equal("JT");
         testContent = new nameParser("T Bag C")
